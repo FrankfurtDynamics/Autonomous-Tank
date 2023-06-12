@@ -57,81 +57,84 @@ void setup()
 void loop()
 {
   while (distancefront <= 45){
-  brake(motor1, motor2);
-  digitalWrite(trigPinleft, LOW);
-  delayMicroseconds(2);
-  digitalWrite(trigPinleft, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(trigPinleft, LOW);
-  durationleft = pulseIn(echoPinleft, HIGH);
-  distanceleft = durationleft * 0.034 / 2;
-  
-  digitalWrite(trigPinright, LOW);
-  delayMicroseconds(2);
-  digitalWrite(trigPinright, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(trigPinright, LOW);
-  durationright = pulseIn(echoPinright, HIGH);
-  distanceright = durationright * 0.034 / 2;
+    brake(motor1, motor2);
+    digitalWrite(trigPinleft, LOW);
+    delayMicroseconds(2);
+    digitalWrite(trigPinleft, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(trigPinleft, LOW);
+    durationleft = pulseIn(echoPinleft, HIGH);
+    distanceleft = durationleft * 0.034 / 2;
 
-  if (distanceleft <= distanceright){
-    Dreher = 0;
-    Serial.print("Turn right");
-    right(motor1, motor2, 180);
-    right(motor1, motor2, 180);
-    delay(1000);
-  digitalWrite(trigPinfront, LOW);
-  delayMicroseconds(2);
-  digitalWrite(trigPinfront, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(trigPinfront, LOW);
-  durationfront = pulseIn(echoPinfront, HIGH);
-  distancefront = durationfront * 0.034 / 2;
-  Serial.print("Distancefront: ");
-  Serial.print(distancefront);
-  Serial.println(" cm");
-  delay(250);
-  }
-  else{
-    Dreher = 0;
-    Serial.print("Turn left");
-    left(motor1, motor2, 180);
-    left(motor1, motor2, 180); 
-    delay(1000);
-  digitalWrite(trigPinfront, LOW);
-  delayMicroseconds(2);
-  // Sets the trigPin HIGH (ACTIVE) for 10 microseconds
-  digitalWrite(trigPinfront, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(trigPinfront, LOW);
-  // Reads the echoPin, returns the sound wave travel time in microseconds
-  durationfront = pulseIn(echoPinfront, HIGH);
-  // Calculating the distance
-  distancefront = durationfront * 0.034 / 2; // Speed of sound wave divided by 2 (go and back)
-  // Displays the distance on the Serial Monitor
-  Serial.print("Distancefront: ");
-  Serial.print(distancefront);
-  Serial.println(" cm");
-  delay(250);
-  }
+    digitalWrite(trigPinright, LOW);
+    delayMicroseconds(2);
+    digitalWrite(trigPinright, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(trigPinright, LOW);
+    durationright = pulseIn(echoPinright, HIGH);
+    distanceright = durationright * 0.034 / 2;
+
+    if (distanceleft <= distanceright)
+    {
+      Dreher = 0;
+      Serial.print("Turn right");
+      right(motor1, motor2, 180);
+      right(motor1, motor2, 180);
+      delay(1000);
+      digitalWrite(trigPinfront, LOW);
+      delayMicroseconds(2);
+      digitalWrite(trigPinfront, HIGH);
+      delayMicroseconds(10);
+      digitalWrite(trigPinfront, LOW);
+      durationfront = pulseIn(echoPinfront, HIGH);
+      distancefront = durationfront * 0.034 / 2;
+      Serial.print("Distancefront: ");
+      Serial.print(distancefront);
+      Serial.println(" cm");
+      delay(250);
+    }
+    else
+    {
+     Dreher = 0;
+     Serial.print("Turn left");
+     left(motor1, motor2, 180);
+     left(motor1, motor2, 180); 
+     delay(1000);
+     digitalWrite(trigPinfront, LOW);
+     delayMicroseconds(2);
+    // Sets the trigPin HIGH (ACTIVE) for 10 microseconds
+    digitalWrite(trigPinfront, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(trigPinfront, LOW);
+    // Reads the echoPin, returns the sound wave travel time in microseconds
+    durationfront = pulseIn(echoPinfront, HIGH);
+    // Calculating the distance
+    distancefront = durationfront * 0.034 / 2; // Speed of sound wave divided by 2 (go and back)
+    // Displays the distance on the Serial Monitor
+    Serial.print("Distancefront: ");
+    Serial.print(distancefront);
+    Serial.println(" cm");
+    delay(250);
+    }
   }  
-  while (distancefront > 45){
- forward(motor1, motor2, 100);
- Serial.print("Forward");
-  digitalWrite(trigPinfront, LOW);
-  delayMicroseconds(2);
-  // Sets the trigPin HIGH (ACTIVE) for 10 microseconds
-  digitalWrite(trigPinfront, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(trigPinfront, LOW);
-  // Reads the echoPin, returns the sound wave travel time in microseconds
-  durationfront = pulseIn(echoPinfront, HIGH);
-  // Calculating the distance
-  distancefront = durationfront * 0.034 / 2; // Speed of sound wave divided by 2 (go and back)
-  // Displays the distance on the Serial Monitor
-  Serial.print("Distancefront: ");
-  Serial.print(distancefront);
-  Serial.println(" cm");
-  delay(250);
+ while (distancefront > 45)
+ {
+   forward(motor1, motor2, 100);
+   Serial.print("Forward");
+    digitalWrite(trigPinfront, LOW);
+    delayMicroseconds(2);
+    // Sets the trigPin HIGH (ACTIVE) for 10 microseconds
+    digitalWrite(trigPinfront, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(trigPinfront, LOW);
+    // Reads the echoPin, returns the sound wave travel time in microseconds
+    durationfront = pulseIn(echoPinfront, HIGH);
+    // Calculating the distance
+    distancefront = durationfront * 0.034 / 2; // Speed of sound wave divided by 2 (go and back)
+    // Displays the distance on the Serial Monitor
+    Serial.print("Distancefront: ");
+    Serial.print(distancefront);
+    Serial.println(" cm");
+    delay(250);
   }
 }
